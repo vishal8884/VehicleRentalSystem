@@ -1,0 +1,34 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h1>Update vehicles</h1>
+
+<form action="#" 
+  th:action="@{/update/{id}(id=${vehicle.id})}" 
+  th:object="${vehicle}" 
+  method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> <br>
+    
+    
+      <label for="type">Choose Type of vehicle:</label> 
+     <select name="type" id="type" th:field="*{type}" >
+		<option value="car">Car</option>
+		<option value="bike">Bike</option>
+		<option value="truck">Truck</option>
+		<option value="bus">Bus</option>
+		<option value="flight">Flight</option>
+	</select> 
+	<span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span> <br> 
+	
+	
+	<label for="cost">Cost</label>
+    <input type="number" th:field="*{cost}" id="cost" placeholder="Cost">
+    <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span> <br>
+    
+
+	<input type="submit" value="Update Vehicle" />
+</form>
+
+</html>

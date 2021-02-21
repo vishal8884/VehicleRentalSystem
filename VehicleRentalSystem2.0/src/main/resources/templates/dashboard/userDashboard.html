@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h1>Welcome to User Dashboard</h1>
+
+
+<a href="checkAvailability">Check availability of vehicles</a>
+
+<form th:action="@{/user/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+</html>

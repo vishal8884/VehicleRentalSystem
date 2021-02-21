@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>View USERS</h1>
+
+
+<table border="1px">
+    <thead>
+        <tr>
+            <th> Name</th>
+            <th> EMAIL </th>
+
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${allUsers.empty}">
+            <td colspan="2"> No USERS Available </td>
+        </tr>
+        <tr th:each="user : ${allUsers}">
+            <td><span th:text="${user.name}"> Name </span></td>
+            <td><span th:text="${user.email}"> Email </span></td>
+        </tr>
+    </tbody>
+</table>
+
+</html>

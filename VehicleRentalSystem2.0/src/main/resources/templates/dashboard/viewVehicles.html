@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>View vehicles</h1>
+
+
+<table border="1px">
+    <thead>
+        <tr>
+            <th> Name</th>
+            <th> Type </th>
+            <th> Cost </th>
+            <th>Delete</th>
+            <th>Edit  </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${allVehicles.empty}">
+            <td colspan="2"> No Vehicles Available </td>
+        </tr>
+        <tr th:each="vehicle : ${allVehicles}">
+            <td><span th:text="${vehicle.name}"> Name </span></td>
+            <td><span th:text="${vehicle.type}"> Type </span></td>
+            <td><span th:text="${vehicle.cost}"> Cost </span></td>
+            <td><a th:href="@{/delete/{id}(id=${vehicle.id})}">delete vehicle</a></td>
+            <td><a th:href="@{/edit/{id}(id=${vehicle.id})}">Edit vehicle</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="dashboard">Add more vehicles</a>
+</html>

@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+ <h1>Admin Login page</h1>
+    <form th:action="@{/admin/login}" method="post">
+    <p>
+        User name: <input type="text" name="username" required /> 
+    </p>
+    <p>
+        Password: <input type="password" name="password" required />
+    </p>
+    <p>
+        <input type="submit" value="Login" />
+
+</form>
+
+<form th:action="@{/admin/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+
+</html>

@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h1>Welcome to Admin Dashboard</h1>
+
+<form action="regVendor" method="post">
+<h1>ADD VENDOR</h1>
+<pre>
+VENDOR Name: <input type="text" name="name" required="required"/>
+VENDOR Email: <input type="email" name="email" required="required">
+VENDOR Password: <input type="password" name="password" required="required"/>
+</pre>      
+<input type="submit" value="save"/>   
+</form>
+
+<a href="viewVendors">View all vendors</a> <br>
+
+<a href="viewUsers">View all users</a>
+
+<span th:text="${savesuccess}"></span>
+
+<span th:text="${error}"></span>
+
+<form th:action="@{/admin/logout}" method="post">
+    <input type="submit" value="Logout" />
+</form>
+</html>

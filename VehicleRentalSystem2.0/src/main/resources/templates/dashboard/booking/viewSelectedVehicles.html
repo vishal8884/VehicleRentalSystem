@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>View Selected vehicles</h1>
+
+<form action="bookVehicle" method="post">
+<table border="1px">
+    <thead>
+        <tr>
+            <th> Name</th>
+            <th> Type </th>
+            <th> Cost </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${selectedVehicles.empty}">
+            <td colspan="2"> No Vehicles Available </td>
+        </tr>
+        <tr th:each="vehicle : ${selectedVehicles}">
+            <td><span th:text="${vehicle.name}"> Name </span></td>
+            <td><span th:text="${vehicle.type}"> Type </span></td>
+            <td><span th:text="${vehicle.cost}"> Cost </span></td>
+        </tr>
+    </tbody>
+</table>
+<br><br>
+<input type="submit" value="confirm booking and pay">
+</form>
+
+</html>

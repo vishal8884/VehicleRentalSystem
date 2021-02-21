@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<h1>View vendors</h1>
+
+
+<table border="1px">
+    <thead>
+        <tr>
+            <th> Name</th>
+            <th> EMAIL </th>
+            <th>Delete</th>
+            <th>Edit  </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${allVendors.empty}">
+            <td colspan="2"> No Vehicles Available </td>
+        </tr>
+        <tr th:each="vendor : ${allVendors}">
+            <td><span th:text="${vendor.name}"> Name </span></td>
+            <td><span th:text="${vendor.email}"> Email </span></td>
+            <td><a th:href="@{/deletevendor/{id}(id=${vendor.id})}">delete vendor</a></td>
+            <td><a th:href="@{/editvendor/{id}(id=${vendor.id})}">Edit vendor</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="dashboard">Add vendors</a>
+</html>

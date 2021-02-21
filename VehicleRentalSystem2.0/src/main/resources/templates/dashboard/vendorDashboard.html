@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<h1>Welcome to Vendor Dashboard</h1>
+
+
+<form action="#" th:action="@{/vendor/addVehicle}" method="post">
+	name: <input type="text" name="name" required /> <br> <label
+		for="type">Choose Type of vehicle:</label> <select name="type" id="type">
+		<option value="car">Car</option>
+		<option value="bike">Bike</option>
+		<option value="truck">Truck</option>
+		<option value="bus">Bus</option>
+	</select> 
+	 <br> Cost: <input type="number" name="cost" required /> <br>
+	<input type="submit" value="addVehicle" />
+
+</form>
+
+<a href="viewVehicles">View vehicles</a>
+
+<form th:action="@{/vendor/logout}" method="post">
+	<input type="submit" value="Logout" />
+</form>
+</html>
