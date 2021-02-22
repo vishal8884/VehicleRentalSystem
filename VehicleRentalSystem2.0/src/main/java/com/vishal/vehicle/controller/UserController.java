@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.vishal.vehicle.entities.Feedback;
 import com.vishal.vehicle.entities.User;
 import com.vishal.vehicle.entities.Vehicle;
 import com.vishal.vehicle.repository.UserRepository;
 import com.vishal.vehicle.repository.VehicleRepository;
+import com.vishal.vehicle.repository.feedbackRepository;
 import com.vishal.vehicle.service.ViewSelectedVehiclesServiceImpl;
 import com.vishal.vehicle.service.viewSelectedVehicleServiceI;
 
@@ -33,7 +35,8 @@ public class UserController {
 	private UserRepository userRepo;
 	
 	@Autowired
-	private viewSelectedVehicleServiceI viewSelectedVehiclesService;
+	private feedbackRepository feedbackRepo;
+	
 	
 	
 	
@@ -90,9 +93,20 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/bookVehicleReview")
-	public String thanks(@RequestParam("rating") int rating)
+	public String thanks(@RequestParam("rating") int rating , Principal principal)
 	{
-		System.out.println("rating ::"+rating);
+		
+		String userName =  principal.getName();  //principal is used to get current logged in user
+	 	User user = userRepo.findByName(userName);
+		
+		Feedback feedback = new Feedback();
+		feedback.setRatings(rating);
+		feedback.setUser_email(user);
+		feedback.setVehicle_name(selectedVehicle);
+		feedback.setVendor_email(user);
+		
+		feedbackRepo.save(feedback);
+		
 		return "dashboard/booking/bookingSuccessfulReview";
 	}
 	
