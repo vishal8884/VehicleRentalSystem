@@ -56,7 +56,7 @@ public class VendorController {
 		List<Vehicle> viewVehicles = new ArrayList<Vehicle>();
 		for(Vehicle v : allVehicles)
 		{
-			if(v.getVendor().getId()==currentId)
+			if(v.getVendor().getId()==currentId && v.isAvailable()==true)
 				viewVehicles.add(v);
 		}
 		modelMap.addAttribute("allVehicles", viewVehicles);

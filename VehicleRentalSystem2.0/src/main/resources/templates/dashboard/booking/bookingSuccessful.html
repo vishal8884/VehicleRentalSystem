@@ -3,7 +3,7 @@
 
 
 
-<form action="bookVehicleSuccessful" method="post">
+<form action="bookVehicleReview" th:object="${selectedVehicles}" method="post">
 <table border="1px">
     <thead>
         <tr>
@@ -14,13 +14,11 @@
         </tr>
     </thead>
     <tbody>
-	<tr th:if="${selectedVehicles.empty}">
-            <td colspan="2"> No Vehicles Available </td>
-        </tr>
-        <tr th:each="vehicle : ${selectedVehicles}">
-            <td><span th:text="${vehicle.name}"> Name </span></td>
-            <td><span th:text="${vehicle.type}"> Type </span></td>
-            <td><span th:text="${vehicle.vendor.id}"> Vendor_id </span></td>
+
+        <tr>
+            <td><span th:text="${selectedVehicles.name}"> Name </span></td>
+            <td><span th:text="${selectedVehicles.type}"> Type </span></td>
+            <td><span th:text="${selectedVehicles.vendor.id}"> Vendor_id </span></td>
             <td>
         <input type="radio" name="rating" value="0" checked /><span class="hide"></span>
         <input type="radio" name="rating" value="1" /><span></span>

@@ -36,7 +36,8 @@ public class UserController {
 	private viewSelectedVehicleServiceI viewSelectedVehiclesService;
 	
 	
-	private Set<Vehicle> selectedVehicles = new HashSet<Vehicle>();
+	
+	private Vehicle selectedVehicle = new Vehicle();
 
 	@RequestMapping("/user/checkAvailability")
 	public String checkAvail(ModelMap modelMap)
@@ -53,22 +54,26 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/viewSelctedVehicles")
-	public String viewSelectedVehicles(@RequestParam("id") String[] ids , ModelMap modelMap ,Principal principal)
+	public String viewSelectedVehicles(@RequestParam("id") int id , ModelMap modelMap ,Principal principal)
 	{
-		selectedVehicles = viewSelectedVehiclesService.selectedVehiclesSet(ids);
+		selectedVehicle = vehicleRepo.findById(id).orElse(new Vehicle());
+		if(selectedVehicle!=null) {
+			selectedVehicle.setAvailable(false);
+		modelMap.addAttribute("selectedVehicles",selectedVehicle);
+		}
 		
-		modelMap.addAttribute("selectedVehicles",selectedVehicles);
-		
+        Set<Vehicle> selectedVehicles = new HashSet<Vehicle>();
+        selectedVehicles.add(selectedVehicle);
 		String userName =  principal.getName();  //principal is used to get current logged in user
-	 	User user_for_id = userRepo.findByName(userName);
+	 	User user = userRepo.findByName(userName);
 		
 		
-		User user = userRepo.findById(user_for_id.getId()).orElse(new User());
 		if(user!=null) 
 		{	
 		user.setVehicle(selectedVehicles);  //this maps value of user_id and vehicle_id
 		userRepo.save(user);
 		}
+		
 		return "dashboard/booking/viewSelectedVehicles";
 	}
 	
@@ -79,9 +84,16 @@ public class UserController {
 	@RequestMapping("/user/bookVehicle")
 	public String bookVehicle(ModelMap modelMap)
 	{
-		
-		modelMap.addAttribute("selectedVehicles",selectedVehicles);
+//		System.out.println("Rating is :: "+rating);
+		modelMap.addAttribute("selectedVehicles",selectedVehicle);
 		return "dashboard/booking/bookingSuccessful";
+	}
+	
+	@RequestMapping("/user/bookVehicleReview")
+	public String thanks(@RequestParam("rating") int rating)
+	{
+		System.out.println("rating ::"+rating);
+		return "dashboard/booking/bookingSuccessfulReview";
 	}
 	
 }
@@ -166,3 +178,39 @@ public class UserController {
 //}
 //
 //allVehicles.removeAll(bookedvehicle);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//THIS IS FOR CHECK BOX
+
+//@RequestMapping("/user/viewSelctedVehicles")
+//public String viewSelectedVehicles(@RequestParam("id") String[] ids , ModelMap modelMap ,Principal principal)
+//{
+//	selectedVehicles = viewSelectedVehiclesService.selectedVehiclesSet(ids);
+//	
+//	modelMap.addAttribute("selectedVehicles",selectedVehicles);
+//	
+//	String userName =  principal.getName();  //principal is used to get current logged in user
+// 	User user_for_id = userRepo.findByName(userName);
+//	
+//	
+//	User user = userRepo.findById(user_for_id.getId()).orElse(new User());
+//	if(user!=null) 
+//	{	
+//	user.setVehicle(selectedVehicles);  //this maps value of user_id and vehicle_id
+//	userRepo.save(user);
+//	}
+//	return "dashboard/booking/viewSelectedVehicles";
+//}

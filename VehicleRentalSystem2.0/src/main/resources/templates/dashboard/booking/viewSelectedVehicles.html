@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <h1>View Selected vehicles</h1>
 
-<form action="bookVehicle" method="post">
+<form action="bookVehicle" th:object="${selectedVehicles}"  method="post">
 <table border="1px">
     <thead>
         <tr>
@@ -11,13 +11,10 @@
         </tr>
     </thead>
     <tbody>
-	<tr th:if="${selectedVehicles.empty}">
-            <td colspan="2"> No Vehicles Available </td>
-        </tr>
-        <tr th:each="vehicle : ${selectedVehicles}">
-            <td><span th:text="${vehicle.name}"> Name </span></td>
-            <td><span th:text="${vehicle.type}"> Type </span></td>
-            <td><span th:text="${vehicle.cost}"> Cost </span></td>
+        <tr>
+            <td><span th:text="${selectedVehicles.name}"> Name </span></td>
+            <td><span th:text="${selectedVehicles.type}"> Type </span></td>
+            <td><span th:text="${selectedVehicles.cost}"> Cost </span></td>
         </tr>
     </tbody>
 </table>
@@ -26,3 +23,16 @@
 </form>
 
 </html>
+
+
+
+<!-- <tbody>
+	<tr th:if="${selectedVehicles.empty}">
+            <td colspan="2"> No Vehicles Available </td>
+        </tr>
+        <tr th:each="vehicle : ${selectedVehicles}">
+            <td><span th:text="${vehicle.name}"> Name </span></td>
+            <td><span th:text="${vehicle.type}"> Type </span></td>
+            <td><span th:text="${vehicle.cost}"> Cost </span></td>
+        </tr>
+    </tbody> -->
