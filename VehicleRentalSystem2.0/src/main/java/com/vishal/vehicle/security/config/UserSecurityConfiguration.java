@@ -24,7 +24,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	UserDetailsService getUserDetailService;
 	
 	@Bean
-	public PasswordEncoder passwordEncoder()//this meathod says i am okay with clear text password
+	public PasswordEncoder passwordEncoder2()//this meathod says i am okay with clear text password
 	{
 		return NoOpPasswordEncoder.getInstance();
 	}
@@ -39,7 +39,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setUserDetailsService(getUserDetailService);
-		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder2());
 		
 		return daoAuthenticationProvider;	
 	}
