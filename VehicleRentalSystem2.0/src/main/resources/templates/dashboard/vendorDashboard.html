@@ -1,24 +1,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<h1>Welcome to Vendor Dashboard</h1>
+<link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css" >
+    
+    <style>
+     
+        .main
+        {
+            margin: auto;
+            width: 30%;
+            padding: 10px;
+            font-size: 20px
+        }
+        .heading
+        {
+            margin: auto;
+            width: 50%;
+           
+        }
+        
+        
+    </style>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Vehicle Rental system</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+        </ul>
+       <form th:action="@{/vendor/logout}" method="post">
+    <input type="submit" value="Logout" />
+      </form>
+    
+    
+  </div>
+</nav>
 
 
+<body>
+    
+  <center><h1>Welcome to Vendor Dashboard</h1></center> <br><br><br><br>
+
+<div class="main">
 <form action="#" th:action="@{/vendor/addVehicle}" method="post">
-	name: <input type="text" name="name" required /> <br> <label
+	Name: <input type="text" name="name" required /> <br> <label
 		for="type">Choose Type of vehicle:</label> <select name="type" id="type">
 		<option value="car">Car</option>
 		<option value="bike">Bike</option>
 		<option value="truck">Truck</option>
 		<option value="bus">Bus</option>
 	</select> 
-	 <br> Cost: <input type="number" name="cost" required /> <br>
-	<input type="submit" value="addVehicle" />
+	 <br> Cost: <input type="number" name="cost" required /> <br> <br>
+	<center><input type="submit" value="addVehicle" /></center>
 
 </form>
 
 <a href="viewVehicles">View vehicles</a>
+</div>
 
-<form th:action="@{/vendor/logout}" method="post">
-	<input type="submit" value="Logout" />
-</form>
+
+
+    
+ </body>
 </html>
