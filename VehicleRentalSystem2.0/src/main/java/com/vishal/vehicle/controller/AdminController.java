@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vishal.vehicle.entities.Feedback;
 import com.vishal.vehicle.entities.User;
 import com.vishal.vehicle.entities.Vehicle;
 import com.vishal.vehicle.repository.UserRepository;
+import com.vishal.vehicle.repository.feedbackRepository;
 
 @Controller
 public class AdminController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	feedbackRepository feedbackRepo;
 	
 	@PostMapping("/admin/regVendor") //@RequestMapping("/update/{id}") also works
 	public String regVendor(@ModelAttribute("user") User user , ModelMap modelMap)
@@ -102,8 +108,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("admin/viewAllReviews")
-	public String viewAllReviews()
+	public String viewAllReviews(ModelMap modelMap)
 	{
+		List<Feedback> allReviews = feedbackRepo.findAll();
+		modelMap.addAttribute("allReviews", allReviews);
 		return "dashboard/viewReviews";
 	}
 

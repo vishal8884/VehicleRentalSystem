@@ -93,7 +93,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user/bookVehicleReview")
-	public String thanks(@RequestParam("rating") int rating , Principal principal)
+	public String thanksReview(@RequestParam("rating") int rating , Principal principal)
 	{
 		
 		String userName =  principal.getName();  //principal is used to get current logged in user
@@ -103,7 +103,7 @@ public class UserController {
 		feedback.setRatings(rating);
 		feedback.setUser_email(user);
 		feedback.setVehicle_name(selectedVehicle);
-		feedback.setVendor_email(user);
+		feedback.setVendor_email(selectedVehicle.getVendor());
 		
 		feedbackRepo.save(feedback);
 		
