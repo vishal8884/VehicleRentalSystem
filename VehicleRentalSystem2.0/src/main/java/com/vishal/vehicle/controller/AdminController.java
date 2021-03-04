@@ -100,5 +100,11 @@ public class AdminController {
 		
 		return "dashboard/viewUsers";
 	}
+	
+	@RequestMapping("admin/viewAllReviews")
+	public String viewAllReviews()
+	{
+		return "dashboard/viewReviews";
+	}
 
 }
